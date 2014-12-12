@@ -11,20 +11,26 @@
     <script src="./lib/bullet.js"></script>
     <link rel="stylesheet" type="text/css" href="./lib/style.css">
     <link rel="stylesheet" type="text/css" href="./vendor/alertify.core.css">
-    <link rel="stylesheet" type="text/css" href="./vendor/default.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/alertify.default.css">
   </head>
   <body>
     <canvas id="game-canvas"></canvas>
 
     <script src="vendor/alertify.min.js"></script>
     <script>
-      var canvasEl = document.getElementsByTagName("canvas")[0];
-      var ctx = canvasEl.getContext('2d');
-      canvasEl.height = window.innerHeight;
-      canvasEl.width = window.innerWidth;
-      var game = new Asteroids.Game()
-      var gameView = new Asteroids.GameView(game, ctx);
-      gameView.start();
+    alertify.set({ labels: { ok: "Play"} });
+    var message = "Welcome to Drifting In Space! </br>Use the Arrow Keys to move and the space bar to shoot."
+    alertify.confirm(message, function (e) {
+      if (e) {
+        var canvasEl = document.getElementsByTagName("canvas")[0];
+        var ctx = canvasEl.getContext('2d');
+        canvasEl.height = window.innerHeight;
+        canvasEl.width = window.innerWidth;
+        var game = new Asteroids.Game()
+        var gameView = new Asteroids.GameView(game, ctx);
+        gameView.start();
+      }
+    });
     </script>
   </body>
 
